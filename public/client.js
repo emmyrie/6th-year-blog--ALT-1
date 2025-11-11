@@ -8,8 +8,13 @@ function submitDataToServer() {
   // create an object to post to the server
   // IMPORTANT: ONE NAME - VALUE PAIR FOR EACH FIELD
   let dataObj = {
-    fname: document.getElementById("firstName").value,
-    sname: document.getElementById("surName").value,
+//    fname: document.getElementById("firstName").value,
+//    sname: document.getElementById("surName").value,
+
+title: document.getElementById("title").value,
+author: document.getElementById("author").value,
+content: document.getElementById("content").value,
+  
   };
   // JUST USE THESE LINES AS THEY ARE - NO NEED TO CHANGE
   event.preventDefault(); // prevents 2 calls to this function!!
@@ -41,7 +46,8 @@ function displayData() {
   // iterate through every row and add it to our page
   users.forEach(function (row) {
     const newListItem = document.createElement("li");
-    newListItem.innerHTML = row["first_name"] + " " + row["surname"];
+    //newListItem.innerHTML = row["first_name"] + " " + row["surname"];
+  newListItem.innerHTML = row["title"] + " " + row["author"] + " " + row["content"];
     rowList.appendChild(newListItem);
   });
 }
