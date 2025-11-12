@@ -39,7 +39,7 @@ function getDataFromServer() {
 function displayData() {
   console.log("displayData()");
   // define variables that reference elements on our page
-  const rowList = document.getElementById("users");
+  const rowList = document.getElementById("Articles");
   rowList.innerHTML = ""; // clear all the list items
   // parse our response to convert to JSON
   let users = JSON.parse(this.responseText);
