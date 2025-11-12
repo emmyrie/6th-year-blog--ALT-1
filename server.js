@@ -59,7 +59,7 @@ console.log("In app.post (/putData)");
 // insert into person(first_name, surname) values ('Joe', 'Bloggs')
 let insStr = "insert into blog(title, author, content) values (";
 insStr = insStr + "\'"+request.body.title+"\', ";
-insStr = insStr + "\'"+request.body.author+"\') ";
+insStr = insStr + "\'"+request.body.author+"\' ";
 insStr = insStr + "\'"+request.body.content+"\') ";
 db.run(insStr);
 });
