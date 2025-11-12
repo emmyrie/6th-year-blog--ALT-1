@@ -10,7 +10,7 @@ function submitDataToServer() {
   let dataObj = {
 //    fname: document.getElementById("firstName").value,
 //    sname: document.getElementById("surName").value,
-
+// changed from first and last name to article content:
 title: document.getElementById("title").value,
 author: document.getElementById("author").value,
 content: document.getElementById("content").value,
