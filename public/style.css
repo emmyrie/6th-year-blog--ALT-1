@@ -61,9 +61,16 @@ button:active {
   box-shadow: none;
 }
 
+//li {
+//  margin-bottom: 5px;
+//}
+
+//suggested by ChatGPT to remove the bulletpoints:
 li {
-  margin-bottom: 5px;
+  list-style-type: none;  /* removes the bullets */
+  margin-bottom: 5px;     /* keep your spacing */
 }
+
 
 footer {
   margin-top: 50px;
