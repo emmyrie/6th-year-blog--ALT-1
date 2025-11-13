@@ -3,24 +3,46 @@ const btn = document.getElementById("submit-btn");
 btn.addEventListener("click", submitDataToServer);
 
 // Submit clicked so post the data to the server
-function submitDataToServer() {
-  console.log("SUBMIT clicked!!!"); // display a message
+//function submitDataToServer() {
+//  console.log("SUBMIT clicked!!!"); // display a message
   // create an object to post to the server
   // IMPORTANT: ONE NAME - VALUE PAIR FOR EACH FIELD
-  let dataObj = {
+//  let dataObj = {
 //    fname: document.getElementById("firstName").value,
 //    sname: document.getElementById("surName").value,
 // changed from first and last name to article content:
-title: document.getElementById("title").value,
-author: document.getElementById("author").value,
-content: document.getElementById("content").value,
+//title: document.getElementById("title").value,
+//author: document.getElementById("author").value,
+//content: document.getElementById("content").value,
   
-  };
+ // };
   // JUST USE THESE LINES AS THEY ARE - NO NEED TO CHANGE
-  event.preventDefault(); // prevents 2 calls to this function!!
+//  event.preventDefault(); // prevents 2 calls to this function!!
+ // const requestMsg = new XMLHttpRequest();
+//  requestMsg.open("post", "/putData", true); // open a HTTP post request
+//  requestMsg.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+//  requestMsg.send(JSON.stringify(dataObj));
+//}
+
+function submitDataToServer(event) {   // ✅ add "event" here
+  event.preventDefault();              // ✅ now it works properly
+  console.log("SUBMIT clicked!!!");
+
+  let dataObj = {
+    title: document.getElementById("title").value,
+    author: document.getElementById("author").value,
+    content: document.getElementById("content").value,
+  };
+
   const requestMsg = new XMLHttpRequest();
-  requestMsg.open("post", "/putData", true); // open a HTTP post request
+  requestMsg.open("post", "/putData", true);
   requestMsg.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+  requestMsg.addEventListener("load", () => {
+    console.log("Data posted successfully!");
+    getDataFromServer();  // refresh list after posting
+  });
+
   requestMsg.send(JSON.stringify(dataObj));
 }
 
