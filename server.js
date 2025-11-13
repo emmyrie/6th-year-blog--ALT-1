@@ -53,15 +53,36 @@ let db = new sqlite3.Database('ALT1.db'); // database name
 //db.run(insStr);
 
 // Process the HTTP POST request for /putData
-app.post("/putData", function (request, response) {
-console.log("In app.post (/putData)");
+//app.post("/putData", function (request, response) {
+//console.log("In app.post (/putData)");
 // build up insert statement. For example:
 // insert into person(first_name, surname) values ('Joe', 'Bloggs')
-let insStr = "insert into blog(title, author, content) values (";
-insStr = insStr + "\'"+request.body.title+"\', ";
-insStr = insStr + "\'"+request.body.author+"\', ";
-insStr = insStr + "\'"+request.body.content+"\') ";
-db.run(insStr);
+//let insStr = "insert into blog(title, author, content) values (";
+//insStr = insStr + "\'"+request.body.title+"\', ";
+//insStr = insStr + "\'"+request.body.author+"\', ";
+//insStr = insStr + "\'"+request.body.content+"\') ";
+//db.run(insStr);
+//});
+
+app.post("/putData", function (request, response) {
+  console.log("In app.post (/putData)");
+
+  let insStr = "INSERT INTO blog(title, author, content) VALUES (";
+  insStr += `'${request.body.title}', `;
+  insStr += `'${request.body.author}', `;
+  insStr += `'${request.body.content}')`;
+
+  console.log("Running query:", insStr);
+
+  db.run(insStr, function (err) {
+    if (err) {
+      console.error("Database insert error:", err.message);
+      response.status(500).send("Database insert failed");
+    } else {
+      console.log("Insert successful, ID:", this.lastID);
+      response.status(200).send("Insert successful");
+    }
+  });
 });
 
 // Process the HTTP GET request for /getData
