@@ -64,23 +64,18 @@ let db = new sqlite3.Database('ALT1.db'); // database name
 //db.run(insStr);
 //});
 
-app.post("/putData", function (request, response) {
+app.post("/putData", (req, res) => {
   console.log("In app.post (/putData)");
+  const { title, author, content } = req.body;
 
-  let insStr = "INSERT INTO blog(title, author, content) VALUES (";
-  insStr += `'${request.body.title}', `;
-  insStr += `'${request.body.author}', `;
-  insStr += `'${request.body.content}')`;
-
-  console.log("Running query:", insStr);
-
-  db.run(insStr, function (err) {
+  const sql = "INSERT INTO blog(title, author, content) VALUES (?, ?, ?)";
+  db.run(sql, [title, author, content], function (err) {
     if (err) {
-      console.error("Database insert error:", err.message);
-      response.status(500).send("Database insert failed");
+      console.error("DB insert error:", err.message);
+      res.status(500).send("Insert failed");
     } else {
-      console.log("Insert successful, ID:", this.lastID);
-      response.status(200).send("Insert successful");
+      console.log("Inserted row with ID:", this.lastID);
+      res.status(200).send("Insert successful");
     }
   });
 });
