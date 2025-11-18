@@ -24,8 +24,8 @@ btn.addEventListener("click", submitDataToServer);
 //  requestMsg.send(JSON.stringify(dataObj));
 //}
 
-function submitDataToServer(event) {   // ✅ add "event" here
-  event.preventDefault();              // ✅ now it works properly
+function submitDataToServer(event) {  
+  event.preventDefault();              
   console.log("SUBMIT clicked!!!");
 
   let dataObj = {
